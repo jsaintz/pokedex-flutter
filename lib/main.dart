@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:pokedex/pokemon.dart';
 import 'package:pokedex/pokemon.detail.dart';
 
@@ -17,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  var urlApi =
+  static const urlApi =
       "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json";
 
   PokeHub pokeHub;
@@ -25,10 +24,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    fetchData();
+    buscarDados();
   }
 
-  fetchData() async {
+  buscarDados() async {
     var res = await http.get(urlApi);
     print(res.body);
     var decodeJson = jsonDecode(res.body);
@@ -64,27 +63,33 @@ class _HomePageState extends State<HomePage> {
                             ),
                           );
                         },
-                        child: Card(
-                          elevation: 3.0,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              Container(
-                                height: 100.0,
-                                width: 100.0,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(poke.img),
+                        child: Hero(
+                          tag: poke.img,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            elevation: 3.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Container(
+                                  height: 100.0,
+                                  width: 100.0,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(poke.img),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Text(
-                                poke.name,
-                                style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                                Text(
+                                  poke.name,
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -95,7 +100,7 @@ class _HomePageState extends State<HomePage> {
       drawer: Drawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        backgroundColor: Colors.cyan,
+        backgroundColor: Colors.redAccent,
         child: Icon(Icons.refresh),
       ),
     );
