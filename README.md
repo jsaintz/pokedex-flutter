@@ -1,2 +1,2 @@
 # pokedex-flutter
-Criando Pokedex com Flutter
+Criando Uma Pokedex com Flutter
