@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const urlApi =
+  static const url =
       "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json";
 
   PokeHub pokeHub;
@@ -24,11 +24,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    buscarDados();
+    getDados();
   }
 
-  buscarDados() async {
-    var res = await http.get(urlApi);
+  getDados() async {
+    var res = await http.get(url);
     print(res.body);
     var decodeJson = jsonDecode(res.body);
     pokeHub = PokeHub.fromJson(decodeJson);
