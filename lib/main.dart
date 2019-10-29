@@ -35,12 +35,54 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
+  Icon customIcon = Icon(Icons.search);
+  Widget customSearchBar = Text("Pokedex");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Pokedex"),
+        title: customSearchBar,
         backgroundColor: Colors.redAccent,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              setState(
+                () {
+                  if (this.customIcon.icon == Icons.search) {
+                    this.customIcon = Icon(Icons.cancel);
+                    this.customSearchBar = TextField(
+                      textInputAction: TextInputAction.go,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Buscar",
+                      ),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                      ),
+                    );
+                    new ListView.builder(
+                      itemCount: pokeHub.pokemon.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        pokeHub.pokemon[index].name;
+                      },
+                    ); // ListView(
+                    //   children:HomePage().createElement()
+                    // );
+                  } else {
+                    this.customIcon = Icon(Icons.search);
+                    this.customSearchBar = Text("Pokedex");
+                  }
+                },
+              );
+            },
+            icon: customIcon,
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.more_vert),
+          ),
+        ],
       ),
       body: pokeHub == null
           ? Center(

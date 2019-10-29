@@ -82,15 +82,19 @@ class PokeDetail extends StatelessWidget {
           Align(
             alignment: Alignment.topCenter,
             child: Hero(
-                tag: pokemon.img,
-                child: Container(
-                  height: 200.0,
-                  width: 200.0,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover, image: NetworkImage(pokemon.img))),
-                )),
-          )
+              tag: pokemon.img,
+              child: Container(
+                height: 200.0,
+                width: 200.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(pokemon.img),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       );
 
