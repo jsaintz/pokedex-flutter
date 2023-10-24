@@ -1,10 +1,10 @@
-class NextEvolution {
+class PrevEvolution {
   String? num;
   String? name;
 
-  NextEvolution({this.num, this.name});
+  PrevEvolution({this.num, this.name});
 
-  NextEvolution.fromJson(Map<String, dynamic> json) {
+  PrevEvolution.fromJson(Map<String, dynamic> json) {
     num = json['num'];
     name = json['name'];
   }

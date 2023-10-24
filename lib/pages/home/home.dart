@@ -10,24 +10,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late PokeHub pokeHub;
-  final PokedexApi api = PokedexApi(); // Crie uma instância da classe PokedexApi
+  final PokedexApi api = PokedexApi();
+  late PokeHub pokeHub = PokeHub(pokemon: []);
 
   @override
   void initState() {
-    super.initState();
     fetchData();
+    super.initState();
   }
 
-  Future<void> fetchData() async {
+  Future<PokeHub?> fetchData() async {
     try {
-      final data = await api.fetchData(); // Use a classe PokedexApi para buscar dados
+      PokeHub data = await api.fetchData();
       setState(() {
         pokeHub = data;
       });
     } catch (e) {
       print("Erro ao buscar os dados: $e");
     }
+    return null;
   }
 
   Widget buildSearchBar() {
@@ -73,13 +74,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildPokemonGrid() {
-    return pokeHub.pokemon.isEmpty
+    return pokeHub.pokemon!.isEmpty
         ? Center(child: CircularProgressIndicator())
         : ListView.builder(
-            itemCount: pokeHub.pokemon.length,
+            itemCount: pokeHub.pokemon?.length,
             itemBuilder: (context, index) {
-              final poke = pokeHub.pokemon[index];
-              return buildPokemonCard(poke);
+              final poke = pokeHub.pokemon?[index];
+              return buildPokemonCard(poke!);
             },
           );
   }
@@ -97,7 +98,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
         child: Hero(
-          tag: poke.img,
+          tag: poke.img!,
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
@@ -111,12 +112,12 @@ class _HomePageState extends State<HomePage> {
                   width: 100.0,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(poke.img),
+                      image: NetworkImage(poke.img!),
                     ),
                   ),
                 ),
                 Text(
-                  poke.name,
+                  poke.name!,
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
               ],

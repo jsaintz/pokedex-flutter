@@ -24,13 +24,13 @@ class PokeDetail extends StatelessWidget {
               children: [
                 SizedBox(height: 105.0),
                 Text(
-                  pokemon.name,
+                  pokemon.name!,
                   style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
                 Text("Altura: ${pokemon.height}", style: TextStyle(fontWeight: FontWeight.bold)),
                 Text("Peso: ${pokemon.weight}"),
-                buildInfoRow("Tipo", pokemon.type.map((t) => t).toList(), Colors.amber),
-                buildInfoRow("Fraqueza", pokemon.weaknesses, Colors.red),
+                buildInfoRow("Tipo", pokemon.type!.map((t) => t).toList(), Colors.amber),
+                buildInfoRow("Fraqueza", pokemon.weaknesses!, Colors.red),
                 Text("Próxima Evolução", style: TextStyle(fontWeight: FontWeight.bold)),
                 buildEvolutions(pokemon.nextEvolution),
               ],
@@ -40,14 +40,14 @@ class PokeDetail extends StatelessWidget {
         Align(
           alignment: Alignment.topCenter,
           child: Hero(
-            tag: pokemon.img,
+            tag: pokemon.img!,
             child: Container(
               height: 200.0,
               width: 200.0,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(pokemon.img),
+                  image: NetworkImage(pokemon.img!),
                 ),
               ),
             ),
@@ -85,7 +85,7 @@ class PokeDetail extends StatelessWidget {
         children: evolutions
             .map((n) => FilterChip(
                   backgroundColor: Colors.green,
-                  label: Text(n.name, style: TextStyle(color: Colors.white)),
+                  label: Text(n.name!, style: TextStyle(color: Colors.white)),
                   onSelected: (b) {},
                 ))
             .toList(),
@@ -100,7 +100,7 @@ class PokeDetail extends StatelessWidget {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.redAccent,
-        title: Text(pokemon.name),
+        title: Text(pokemon.name!),
       ),
       body: buildBody(context),
     );
