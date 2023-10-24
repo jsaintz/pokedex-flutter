@@ -47,7 +47,7 @@ class PokeDetail extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(pokemon.img!),
+                  image: NetworkImage(pokemon.img!, scale: 1),
                 ),
               ),
             ),

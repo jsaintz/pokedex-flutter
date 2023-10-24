@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   width: 100.0,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(poke.img!),
+                      image: NetworkImage(poke.img!, scale: 1),
                     ),
                   ),
                 ),
