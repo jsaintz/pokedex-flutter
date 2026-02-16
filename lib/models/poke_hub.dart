@@ -9,15 +9,15 @@ class PokeHub {
     if (json['pokemon'] != null) {
       pokemon = <Pokemon>[];
       json['pokemon'].forEach((v) {
-        pokemon!.add(new Pokemon.fromJson(v));
+        pokemon!.add(Pokemon.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pokemon != null) {
-      data['pokemon'] = this.pokemon!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (pokemon != null) {
+      data['pokemon'] = pokemon!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -5,7 +5,7 @@ import 'package:pokedex/models/pokemon.dart';
 class PokeDetail extends StatelessWidget {
   final Pokemon pokemon;
 
-  PokeDetail({required this.pokemon});
+  const PokeDetail({super.key, required this.pokemon});
 
   Widget buildBody(BuildContext context) {
     return Stack(

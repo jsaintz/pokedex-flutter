@@ -10,9 +10,9 @@ class PrevEvolution {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['num'] = this.num;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['num'] = num;
+    data['name'] = name;
     return data;
   }
 }
